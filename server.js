@@ -20,7 +20,7 @@ var server = http.createServer(function(request, response){
   /******** 从这里开始看，上面不要看 ************/
 
   console.log('有个傻子发请求过来啦！路径（带查询参数）为：' + pathWithQuery)
-  console.log(request['referer'])
+  console.log(request.headers['referer'])
 
   if(path === '/') {
     response.statusCode = 200
@@ -41,7 +41,8 @@ var server = http.createServer(function(request, response){
   } else if(path === '/page2'){
     response.statusCode = 200
     response.setHeader('Content-Type', 'text/json;charset=utf-8')
-    response.setHeader('Access-Control-Allow-Origin', `${request.headers['referer']}`)
+    let str = ['http://120.229.116.74:8888', `${request.headers['referer']}`];
+    response.setHeader('Access-Control-Allow-Origin', str)
     response.write(fs.readFileSync('db/page1.json'))
     response.end()
   } else {
