@@ -41,8 +41,7 @@ var server = http.createServer(function(request, response){
   } else if(path === '/page2'){
     response.statusCode = 200
     response.setHeader('Content-Type', 'text/json;charset=utf-8')
-    let str = ['http://120.229.116.74:8888', `${request.headers['referer']}`];
-    response.setHeader('Access-Control-Allow-Origin', str)
+    response.setHeader('Access-Control-Allow-Origin', '*')
     response.write(fs.readFileSync('db/page1.json'))
     response.end()
   } else {
