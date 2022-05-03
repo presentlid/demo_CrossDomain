@@ -20,6 +20,7 @@ var server = http.createServer(function(request, response){
   /******** 从这里开始看，上面不要看 ************/
 
   console.log('有个傻子发请求过来啦！路径（带查询参数）为：' + pathWithQuery)
+  console.log(request.headers["referer"])
 
   if(path === '/') {
     response.statusCode = 200
@@ -44,8 +45,8 @@ var server = http.createServer(function(request, response){
     response.write(fs.readFileSync('db/page2.json'))
     response.end()
   } else if(path === '/page3'){
-    console.log(request.headers["referer"].indexOf("http://120.229.116.74:8888") !== -1)
-    if (request.headers["referer"].indexOf("http://120.229.116.74:8888") !== -1) {
+    // if (request.headers["referer"].indexOf("http://120.229.116.74:8888") !== -1) {
+    if (1) {
       response.statusCode = 200;
       response.setHeader("Content-Type", "text/javascript;charset=utf-8");
       const string = `window['{{xxx}}']({{data}}) `
